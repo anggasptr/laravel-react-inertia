@@ -2,6 +2,7 @@ import React from "react";
 import { Link, usePage } from "@inertiajs/react";
 
 const AdminLayout = ({ children }) => {
+    const { auth } = usePage().props;
     const { component } = usePage();
     return (
         <>
@@ -11,7 +12,16 @@ const AdminLayout = ({ children }) => {
                         <h2 className="font-bold text-2xl">Todo</h2>
                         <nav className="flex justify-between items-center grow ml-36">
                             <div className="flex gap-6 items-center justify-start">
-                                <Link href="/dashboard">Dashboard</Link>
+                                <Link
+                                    href="/dashboard"
+                                    className={`${
+                                        component == "Dashboard"
+                                            ? "font-semibold text-indigo-500"
+                                            : ""
+                                    }`}
+                                >
+                                    Dashboard
+                                </Link>
                                 <Link
                                     href="/todo"
                                     className={`${
@@ -23,7 +33,7 @@ const AdminLayout = ({ children }) => {
                                     Todo
                                 </Link>
                             </div>
-                            <div className="">user</div>
+                            <div className="">{auth.user.name}</div>
                         </nav>
                     </div>
                 </div>
