@@ -18,6 +18,9 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/todo', function () {
+    return Inertia::render('Todo');
+})->middleware(['auth', 'verified'])->name('todo');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -26,5 +29,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
+// Route::get('/users', [UserController::class, 'index'])->name('users.index');
 
 require __DIR__.'/auth.php';
